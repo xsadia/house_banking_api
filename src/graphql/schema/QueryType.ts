@@ -7,7 +7,7 @@ export const QueryType = new GraphQLObjectType({
     hi: {
       type: GraphQLString,
       resolve: () => {
-        return "Hello world";
+        return "Hello, world";
       },
     },
   }),
