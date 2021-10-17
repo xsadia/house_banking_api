@@ -34,7 +34,7 @@ export const UserType = new GraphQLObjectType({
       type: HouseHoldConnection,
       args: connectionArgs,
       resolve: async (user, args, context) => {
-        const houseHolds = await HouseHold.find({ residents: user._id });
+        const houseHolds = await HouseHold.find({ residents: user.id });
 
         return connectionFromArray(houseHolds, args);
       },

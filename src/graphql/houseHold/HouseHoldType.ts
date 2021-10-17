@@ -6,6 +6,7 @@ import {
   fromGlobalId,
   globalIdField,
 } from "graphql-relay";
+import { Expense } from "../expense/ExpenseModel";
 import { ExpenseConnection } from "../expense/ExpenseType";
 import { nodeInterface } from "../node/nodeDefinition";
 import { User } from "../user/UserModel";
@@ -43,7 +44,12 @@ export const HouseHoldType = new GraphQLObjectType({
     },
     expenses: {
       type: ExpenseConnection,
-      resolve: ({ expenses }) => expenses,
+      args: connectionArgs,
+      resolve: async (houseHold, args, context) => {
+        const expenses = await Expense.find({ belongsTo: houseHold.id });
+
+        return connectionFromArray(expenses, args);
+      },
     },
     inviteCode: {
       type: GraphQLString,
