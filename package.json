@@ -22,7 +22,8 @@
     "koa-graphql": "^0.9.0",
     "koa-router": "^10.1.1",
     "mongoose": "^6.0.5",
-    "supertest": "^6.1.6"
+    "supertest": "^6.1.6",
+    "uuidv4": "^6.2.12"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

@@ -55,6 +55,10 @@ export const HouseHoldType = new GraphQLObjectType({
       type: GraphQLString,
       resolve: ({ inviteCode }) => inviteCode,
     },
+    inviteCodeExpirationDate: {
+      type: GraphQLString,
+      resolve: ({ inviteCodeExpirationDate }) => inviteCodeExpirationDate,
+    },
     createdAt: {
       type: GraphQLString,
       resolve: ({ createdAt }) => createdAt,

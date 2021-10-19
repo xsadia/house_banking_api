@@ -9,6 +9,7 @@ export interface IHouseHold extends Document {
   residents: Types.Array<IUser["_id"]>;
   expenses: Types.Array<IExpense["_id"]>;
   inviteCode: string;
+  inviteCodeExpirationDate: Date;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
@@ -41,6 +42,9 @@ const HouseHoldSchema = new Schema({
   ],
   inviteCode: {
     type: String,
+  },
+  inviteCodeExpirationDate: {
+    type: Date,
   },
   createdAt: {
     type: Date,
