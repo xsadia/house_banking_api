@@ -7,6 +7,7 @@ import {
 import { fromGlobalId, mutationWithClientMutationId } from "graphql-relay";
 import { v4 as uuid } from "uuid";
 import { HouseHold } from "../HouseHoldModel";
+import { HouseHoldType } from "../HouseHoldType";
 
 export default mutationWithClientMutationId({
   name: "GenerateInvite",
@@ -76,9 +77,13 @@ export default mutationWithClientMutationId({
     };
   },
   outputFields: {
-    inviteCode: {
-      type: GraphQLString,
-      resolve: ({ inviteCode }) => inviteCode,
+    houseHold: {
+      type: HouseHoldType,
+      resolve: async ({ inviteCode }) => {
+        const houseHold = await HouseHold.findOne({ inviteCode });
+
+        return houseHold;
+      },
     },
     error: {
       type: GraphQLString,

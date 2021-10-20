@@ -75,6 +75,16 @@ export default mutationWithClientMutationId({
       };
     }
 
+    const responsableIsResident =
+      houseHoldExists.residents.includes(userIdFromGlobal);
+
+    if (!responsableIsResident) {
+      return {
+        success: false,
+        error: "User is not a resident",
+      };
+    }
+
     expenseExists.responsable = userExists._id;
 
     await expenseExists.save();
