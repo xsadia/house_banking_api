@@ -69,7 +69,7 @@ export default mutationWithClientMutationId({
 
     const expense = new Expense({
       name,
-      price,
+      price: price * 100,
       belongsTo: houseHoldExists._id,
     });
 

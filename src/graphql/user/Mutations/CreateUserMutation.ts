@@ -67,7 +67,7 @@ export default mutationWithClientMutationId({
       username,
       email,
       password: hashedPassword,
-      monthlyWage,
+      monthlyWage: monthlyWage * 100,
     });
 
     await user.save();
