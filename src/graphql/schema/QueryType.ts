@@ -9,6 +9,8 @@ import {
   connectionFromArray,
   fromGlobalId,
 } from "graphql-relay";
+import { Expense } from "../expense/ExpenseModel";
+import { ExpenseConnection } from "../expense/ExpenseType";
 import { HouseHold } from "../houseHold/HouseHoldModel";
 import { HouseHoldConnection, HouseHoldType } from "../houseHold/HouseHoldType";
 import { User } from "../user/UserModel";
@@ -79,6 +81,25 @@ export const QueryType = new GraphQLObjectType({
         }
 
         return houseHold;
+      },
+    },
+    userExpenses: {
+      type: ExpenseConnection,
+      args: connectionArgs,
+      resolve: async (root, args, { user }) => {
+        if (!user.id) {
+          const expenses = null;
+          return expenses;
+        }
+
+        const expenses = await Expense.find({ responsable: user.id });
+
+        if (!expenses) {
+          const expenses = null;
+          return expenses;
+        }
+
+        return connectionFromArray(expenses, args);
       },
     },
   }),
