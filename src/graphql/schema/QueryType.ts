@@ -92,7 +92,9 @@ export const QueryType = new GraphQLObjectType({
           return expenses;
         }
 
-        const expenses = await Expense.find({ responsable: user.id });
+        const expenses = await Expense.find({ responsable: user.id }).sort(
+          "-createdAt"
+        );
 
         if (!expenses) {
           const expenses = null;

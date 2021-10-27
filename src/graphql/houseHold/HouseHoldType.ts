@@ -46,7 +46,9 @@ export const HouseHoldType = new GraphQLObjectType({
       type: ExpenseConnection,
       args: connectionArgs,
       resolve: async (houseHold, args, context) => {
-        const expenses = await Expense.find({ belongsTo: houseHold.id });
+        const expenses = await Expense.find({ belongsTo: houseHold.id }).sort(
+          "-createdAt"
+        );
 
         return connectionFromArray(expenses, args);
       },

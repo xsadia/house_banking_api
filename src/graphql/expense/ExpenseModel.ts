@@ -7,6 +7,8 @@ export interface IExpense extends Document {
   price: number;
   responsable: IUser["_id"];
   belongsTo: IHouseHold["_id"];
+  createdAt: Date;
+  deletedAt: Date;
 }
 
 const ExpenseSchema = new Schema({
@@ -25,6 +27,14 @@ const ExpenseSchema = new Schema({
   belongsTo: {
     type: Types.ObjectId,
     ref: "HouseHold",
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  deletedAt: {
+    type: Date,
   },
 });
 
